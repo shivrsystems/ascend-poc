@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+
+  "env": {
+    "PATH": "/Users/shivsoni/.nvm/versions/node/v22.14.0/bin:${PATH}"
+  },
+
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)"
+    ],
+    "deny": [
+      "Edit(.env)",
+      "Write(.env)",
+      "Bash(rm -rf:*)"
+    ]
+  },
+
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "Check if Figma designs have changed compared to our implementation. Use the Figma MCP tools to inspect the Ascend design file (fileKey: n7hLF0V4FAqLsqkKxToOe3). Compare these 4 screens by taking screenshots: Sign In (nodeId: 24:1015), Dashboard (nodeId: 24:684), Clinical Sites (nodeId: 24:852), Curriculum (nodeId: 25:507). For each screen, compare the Figma screenshot against the corresponding component files in src/app/features/. Check colors, typography, spacing, and layout. If you find differences, output a JSON response: {\"systemMessage\": \"Figma drift detected: [brief summary of changes]\", \"hookSpecificOutput\": {\"hookEventName\": \"SessionStart\", \"additionalContext\": \"[detailed list of Figma changes to fix]\"}}. If everything matches, output: {\"systemMessage\": \"Figma designs are in sync with implementation.\"}",
+            "timeout": 120,
+            "statusMessage": "Checking Figma for design changes...",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; if [ -n \"$f\" ] && echo \"$f\" | grep -q '_variables.scss'; then echo 'BLOCKED: Do not modify _variables.scss directly — use design tokens' >&2; exit 2; fi; }",
+            "statusMessage": "Checking design token protection..."
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; if [ -n \"$f\" ] && echo \"$f\" | grep -q '\\.component\\.ts$'; then echo 'BLOCKED: Use feature-name.ts not feature-name.component.ts per project conventions' >&2; exit 2; fi; }",
+            "statusMessage": "Checking file naming convention..."
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | { read -r f; if [ -n \"$f\" ] && echo \"$f\" | grep -qE '(app\\.routes|organization\\.service)\\.ts$'; then echo \"{\\\"systemMessage\\\": \\\"⚠️ Editing architectural file: $f — review changes carefully\\\"}\"; fi; }",
+            "statusMessage": "Checking architectural file..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // empty' | { read -r f; [ -n \"$f\" ] && export PATH=\"/Users/shivsoni/.nvm/versions/node/v22.14.0/bin:$PATH\" && npx prettier --write \"$f\" --ignore-unknown 2>/dev/null || true; }",
+            "statusMessage": "Auto-formatting with Prettier..."
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // empty' | { read -r f; if [ -n \"$f\" ] && echo \"$f\" | grep -q '\\.scss$' && ! echo \"$f\" | grep -q '_variables'; then matches=$(grep -Pn '#[0-9a-fA-F]{3,8}\\b' \"$f\" 2>/dev/null | grep -v '^\\s*//' || true); if [ -n \"$matches\" ]; then echo \"BLOCKED: Hardcoded hex colors found in $f — use \\$color-* design tokens instead\" >&2; exit 2; fi; fi; }",
+            "statusMessage": "Checking for hardcoded colors..."
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // empty' | { read -r f; if [ -n \"$f\" ] && echo \"$f\" | grep -q '\\.spec\\.ts$'; then count=$(grep -c '\\bit(' \"$f\" 2>/dev/null || echo 0); if [ \"$count\" -lt 10 ]; then echo \"WARNING: Only $count tests in $f (minimum 10 required)\" >&2; exit 2; fi; fi; }",
+            "statusMessage": "Checking test count..."
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // empty' | { read -r f; if [ -n \"$f\" ] && echo \"$f\" | grep -q '\\.service\\.ts$' && ! echo \"$f\" | grep -q '\\.spec\\.'; then missing=''; for org in org-1 org-2 org-3; do if ! grep -q \"$org\" \"$f\" 2>/dev/null; then missing=\"$missing $org\"; fi; done; if [ -n \"$missing\" ]; then echo \"WARNING: $f is missing data for:$missing\" >&2; fi; fi; }",
+            "statusMessage": "Checking org data consistency..."
+          }
+        ]
+      }
+    ]
+  }
+}

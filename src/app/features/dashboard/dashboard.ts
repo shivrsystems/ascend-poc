@@ -26,7 +26,11 @@ export class DashboardComponent {
       { label: 'Total Students', value: s.totalStudents, change: s.newStudentsThisMonth },
       { label: 'Total Sites', value: s.totalSites, change: s.newSitesThisMonth },
       { label: 'Total Courses', value: s.totalCourses, change: s.newCoursesThisMonth },
-      { label: 'Scheduled Evaluations', value: s.scheduledEvaluations.toLocaleString(), change: s.newEvaluationsThisMonth },
+      {
+        label: 'Scheduled Evaluations',
+        value: s.scheduledEvaluations.toLocaleString(),
+        change: s.newEvaluationsThisMonth,
+      },
     ];
   });
 
@@ -37,7 +41,7 @@ export class DashboardComponent {
   });
 
   readonly totalPages = computed(() =>
-    Math.ceil(this.dashboardService.reports().length / this.pageSize)
+    Math.ceil(this.dashboardService.reports().length / this.pageSize),
   );
 
   readonly totalReports = computed(() => this.dashboardService.reports().length);

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Angular Dev Server",
+      "runtimeExecutable": "/Users/shivsoni/.nvm/versions/node/v22.14.0/bin/node",
+      "runtimeArgs": ["node_modules/.bin/ng", "serve"],
+      "port": 4200
+    },
+    {
+      "name": "Vitest Watch",
+      "runtimeExecutable": "/Users/shivsoni/.nvm/versions/node/v22.14.0/bin/node",
+      "runtimeArgs": ["node_modules/.bin/vitest"],
+      "port": 51204
+    }
+  ]
+}
