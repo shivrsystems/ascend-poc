@@ -1,0 +1,104 @@
+<div class="sign-in-page">
+  <div class="left-panel">
+    <div class="left-content">
+      <img src="assets/images/ati-logo-white.svg" alt="ATI" class="panel-logo" />
+
+      <div class="hero-section">
+        <h1 class="hero-heading">
+          Your learning platform,<br />
+          elevated.
+        </h1>
+        <p class="hero-subtitle">
+          Manage students, courses, and compliance reports in one place.
+        </p>
+      </div>
+
+      <div class="stats-row">
+        @for (stat of stats; track stat.label) {
+          <div class="stat-item">
+            <span class="stat-value">{{ stat.value }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+
+      <div class="features-list">
+        @for (feature of features; track feature.label) {
+          <div class="feature-card">
+            <div class="feature-icon" [style.background-color]="feature.bgColor">
+              <mat-icon>{{ feature.icon }}</mat-icon>
+            </div>
+            <span class="feature-label">{{ feature.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="decoration-circle"></div>
+  </div>
+
+  <div class="right-panel">
+    <div class="login-card">
+      <img src="assets/images/ati-logo-dark.png" alt="ATI" class="card-logo" />
+
+      <div class="card-header">
+        <h2 class="card-title">Welcome back!</h2>
+        <p class="card-subtitle">Enter your Credentials to access your ATI account</p>
+      </div>
+
+      <form class="login-form" (ngSubmit)="onSignIn()">
+        <div class="form-group">
+          <label class="form-label" for="username">Username</label>
+          <div class="input-wrapper">
+            <input
+              id="username"
+              type="text"
+              class="form-input"
+              placeholder="Enter Username"
+              [ngModel]="username()"
+              (ngModelChange)="username.set($event)"
+              name="username"
+            />
+            <mat-icon class="input-icon">person_outline</mat-icon>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label class="form-label" for="password">Password</label>
+            <a href="#" class="forgot-link">Forgot Username or Password?</a>
+          </div>
+          <div class="input-wrapper">
+            <input
+              id="password"
+              type="password"
+              class="form-input"
+              placeholder="Enter Password"
+              [ngModel]="password()"
+              (ngModelChange)="password.set($event)"
+              name="password"
+            />
+            <mat-icon class="input-icon">lock_outline</mat-icon>
+          </div>
+        </div>
+
+        <div class="checkbox-row">
+          <mat-checkbox
+            [checked]="keepSignedIn()"
+            (change)="keepSignedIn.set($event.checked)"
+            color="primary"
+          >
+            Keep me signed in for 30 days
+          </mat-checkbox>
+        </div>
+
+        <button type="submit" class="sign-in-btn" [disabled]="isLoading()">
+          {{ isLoading() ? 'Signing in...' : 'Sign In' }}
+        </button>
+
+        <p class="signup-text">
+          Don't have an account? <a href="#" class="signup-link">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

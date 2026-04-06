@@ -1,0 +1,47 @@
+@use '@angular/material' as mat;
+@use 'app/styles/variables' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&display=swap');
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Helvetica Neue,
+      density: 0,
+    )
+  );
+}
+
+body {
+  color-scheme: light;
+  margin: 0;
+  height: 100%;
+  font-family: $font-family-primary;
+  color: $color-text-default;
+  background-color: $color-bg-page;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: $color-primary-900;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+:root {
+  --sidebar-width: #{$sidebar-collapsed-width};
+}

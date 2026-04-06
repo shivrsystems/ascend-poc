@@ -1,0 +1,141 @@
+<app-header title="Curriculum Management" subtitle="Build, publish, and manage your learning curricula" />
+
+<div class="curriculum-content">
+  <div class="toolbar">
+    <div class="filter-chips desktop-only">
+      <button
+        class="chip"
+        [class.active]="activeFilter() === 'all'"
+        (click)="setFilter('all')"
+      >
+        <mat-icon class="chip-icon">filter_list</mat-icon>
+        All
+      </button>
+      <button
+        class="chip"
+        [class.active]="activeFilter() === 'published'"
+        (click)="setFilter('published')"
+      >
+        Published
+      </button>
+      <button
+        class="chip"
+        [class.active]="activeFilter() === 'draft'"
+        (click)="setFilter('draft')"
+      >
+        Draft
+      </button>
+    </div>
+
+    <button class="filter-dropdown mobile-only" [matMenuTriggerFor]="filterMenu">
+      <mat-icon class="chip-icon">filter_list</mat-icon>
+      {{ filterLabel() }}
+      <mat-icon class="dropdown-caret">expand_more</mat-icon>
+    </button>
+    <mat-menu #filterMenu="matMenu">
+      <button mat-menu-item (click)="setFilter('all')">All</button>
+      <button mat-menu-item (click)="setFilter('published')">Published</button>
+      <button mat-menu-item (click)="setFilter('draft')">Draft</button>
+    </mat-menu>
+
+    <div class="toolbar-right">
+      <div class="search-wrapper desktop-only">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search curriculum"
+          [ngModel]="searchQuery()"
+          (ngModelChange)="searchQuery.set($event)"
+        />
+      </div>
+      <button class="create-btn">
+        <span class="btn-label-full">+ Create Curriculum</span>
+        <span class="btn-label-short">+ Create</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-search mobile-only">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Search curricula..."
+      [ngModel]="searchQuery()"
+      (ngModelChange)="searchQuery.set($event)"
+    />
+  </div>
+
+  @if (hasResults()) {
+    <div class="curriculum-grid">
+      @for (item of filteredCurricula(); track item.id) {
+        <div class="curriculum-card">
+          <div class="card-top">
+            <h3 class="curriculum-name">{{ item.name }}</h3>
+            <button class="more-btn" [matMenuTriggerFor]="cardMenu">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #cardMenu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>content_copy</mat-icon>
+                <span>Duplicate</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </div>
+
+          <div class="card-details">
+            <div class="detail-item">
+              <span class="detail-value">{{ item.createdDate }}</span>
+              <span class="detail-label">Created</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-value">{{ item.lastUpdated }}</span>
+              <span class="detail-label">Last updated</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-value">{{ item.studyOptions }}</span>
+              <span class="detail-label">Study options</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <a class="manage-link">Manage</a>
+            <span
+              class="status-badge"
+              [class.published]="item.status === 'PUBLISHED'"
+              [class.draft]="item.status === 'DRAFT'"
+            >
+              {{ item.status }}
+            </span>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="empty-state">
+      <div class="empty-icon">
+        <div class="icon-circle">
+          <div class="icon-inner">
+            <mat-icon>search_off</mat-icon>
+          </div>
+        </div>
+      </div>
+      <h3 class="empty-title">No exact matches found</h3>
+      <p class="empty-subtitle">Try a different keyword or explore:</p>
+      <div class="empty-links">
+        <a class="explore-link" (click)="exploreFilter('published')">Published Curriculum</a>
+        <a class="explore-link" (click)="exploreFilter('draft')">Draft Curriculum</a>
+        <a class="explore-link" (click)="exploreFilter('all')">Recently Created</a>
+      </div>
+    </div>
+  }
+</div>

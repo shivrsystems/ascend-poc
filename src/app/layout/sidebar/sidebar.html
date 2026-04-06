@@ -1,0 +1,67 @@
+@if (mobileOpen()) {
+  <div class="mobile-backdrop" (click)="closeMobileOverlay()"></div>
+}
+
+<aside
+  class="sidebar"
+  [class.expanded]="isExpanded()"
+  [class.mobile-open]="mobileOpen()"
+  (mouseenter)="onMouseEnter()"
+>
+  <div class="sidebar-logo">
+    <img
+      src="assets/images/ati-icon-white.svg"
+      alt="ATI"
+      class="logo-img logo-icon"
+      [class.hidden]="isExpanded() || mobileOpen()"
+    />
+    <img
+      src="assets/images/ati-logo-white.svg"
+      alt="ATI"
+      class="logo-img logo-full"
+      [class.hidden]="!isExpanded() && !mobileOpen()"
+    />
+  </div>
+
+  <div class="sidebar-divider"></div>
+
+  <nav class="sidebar-nav">
+    @for (item of navItems; track item.route) {
+      <a
+        class="nav-item"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [matTooltip]="isExpanded() ? '' : item.label"
+        matTooltipPosition="right"
+        (click)="onMobileNavClick()"
+      >
+        <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+        @if (isExpanded() || mobileOpen()) {
+          <span class="nav-label">{{ item.label }}</span>
+        }
+      </a>
+    }
+  </nav>
+
+  <div class="sidebar-bottom">
+    <a class="nav-item" [matTooltip]="isExpanded() ? '' : 'Help'" matTooltipPosition="right">
+      <mat-icon class="nav-icon">help_outline</mat-icon>
+      @if (isExpanded() || mobileOpen()) {
+        <span class="nav-label">Help</span>
+      }
+    </a>
+    <div class="sidebar-divider"></div>
+    <div class="nav-item user-avatar-item">
+      <div class="avatar-circle">
+        <mat-icon>person</mat-icon>
+      </div>
+      @if (isExpanded() || mobileOpen()) {
+        <span class="nav-label user-name-label">John Doe</span>
+      }
+    </div>
+  </div>
+
+  <button class="toggle-btn" (click)="toggle()" [attr.aria-label]="isExpanded() ? 'Collapse sidebar' : 'Expand sidebar'">
+    <mat-icon>{{ isExpanded() ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+  </button>
+</aside>

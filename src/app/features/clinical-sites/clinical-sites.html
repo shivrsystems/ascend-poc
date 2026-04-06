@@ -1,0 +1,221 @@
+<app-header title="Clinical Site Management" subtitle="Monitor performance and manage your clinical sites" />
+
+<div class="clinical-sites-content">
+  <div class="toolbar">
+    <div class="filter-chips desktop-only">
+      <button
+        class="chip"
+        [class.active]="activeFilter() === 'all'"
+        (click)="setFilter('all')"
+      >
+        <mat-icon class="chip-icon">filter_list</mat-icon>
+        All
+      </button>
+      <button
+        class="chip"
+        [class.active]="activeFilter() === 'active'"
+        (click)="setFilter('active')"
+      >
+        Active
+      </button>
+      <button
+        class="chip"
+        [class.active]="activeFilter() === 'balanced'"
+        (click)="setFilter('balanced')"
+      >
+        Balanced
+      </button>
+    </div>
+
+    <button class="filter-dropdown mobile-only" [matMenuTriggerFor]="filterMenu">
+      <mat-icon class="chip-icon">filter_list</mat-icon>
+      {{ filterLabel() }}
+      <mat-icon class="dropdown-caret">expand_more</mat-icon>
+    </button>
+    <mat-menu #filterMenu="matMenu">
+      <button mat-menu-item (click)="setFilter('all')">All</button>
+      <button mat-menu-item (click)="setFilter('active')">Active</button>
+      <button mat-menu-item (click)="setFilter('balanced')">Balanced</button>
+    </mat-menu>
+
+    <div class="toolbar-right">
+      <div class="search-wrapper desktop-only">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search sites..."
+          [ngModel]="searchQuery()"
+          (ngModelChange)="searchQuery.set($event)"
+        />
+      </div>
+      <button class="insights-btn" [class.active]="showInsights()" (click)="toggleInsights()">
+        <mat-icon>insights</mat-icon>
+        Insights
+      </button>
+      <button class="add-btn">
+        <span class="btn-label-full">+ Add Clinical Site</span>
+        <span class="btn-label-short">+ Add</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-search mobile-only">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Search sites..."
+      [ngModel]="searchQuery()"
+      (ngModelChange)="searchQuery.set($event)"
+    />
+  </div>
+
+  @if (showInsights()) {
+    <div class="insights-panel">
+      <div class="insights-header">
+        <h2 class="insights-title">Clinical Sites Insights</h2>
+        <button class="insights-close" (click)="toggleInsights()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="insights-body">
+        <div class="insights-charts">
+          <div class="insight-card">
+            <h4 class="insight-card-title">Top 5 Students by Site</h4>
+            <div class="insight-card-divider"></div>
+            <div class="bar-chart">
+              @for (item of topStudentsBySite(); track item.label) {
+                <div class="bar-row">
+                  <span class="bar-label">{{ item.label }}</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" [style.width.%]="item.percent" [style.background-color]="item.color"></div>
+                  </div>
+                  <span class="bar-value">{{ formatNumber(item.value) }}</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="insight-card">
+            <h4 class="insight-card-title">Site Status Distribution</h4>
+            <div class="insight-card-divider"></div>
+            <div class="donut-chart-wrapper">
+              <div class="donut-chart" [style.background]="getDonutGradient()">
+                <div class="donut-hole"></div>
+              </div>
+              <div class="donut-legend">
+                <div class="legend-item">
+                  <span class="legend-dot" style="background: #12B76A"></span>
+                  Active ({{ statusDistribution().active }})
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot" style="background: #F97066"></span>
+                  Inactive ({{ statusDistribution().inactive }})
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-card">
+            <h4 class="insight-card-title">Top 5 Sites by Courses</h4>
+            <div class="insight-card-divider"></div>
+            <div class="bar-chart">
+              @for (item of topCourses(); track item.label) {
+                <div class="bar-row">
+                  <span class="bar-label">{{ item.label }}</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" [style.width.%]="item.percent" [style.background-color]="item.color"></div>
+                  </div>
+                  <span class="bar-value">{{ item.value }}</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="insight-card">
+            <h4 class="insight-card-title">Top 5 Sites by Location</h4>
+            <div class="insight-card-divider"></div>
+            <div class="bar-chart">
+              @for (item of topSitesByLocation(); track item.label) {
+                <div class="bar-row">
+                  <span class="bar-label">{{ item.label }}</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" [style.width.%]="item.percent" [style.background-color]="item.color"></div>
+                  </div>
+                  <span class="bar-value">{{ item.value }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="insights-attention">
+          <div class="insight-card attention-card">
+            <h4 class="attention-heading">Needs Attention</h4>
+            <div class="attention-list">
+              @for (item of needsAttention(); track item.title + item.detailNames) {
+                <div class="attention-item">
+                  <div class="attention-dot" [style.background-color]="item.dotColor"></div>
+                  <div class="attention-content">
+                    <p class="attention-title">
+                      <span class="attention-count">{{ item.count }}</span> {{ item.title }}
+                    </p>
+                    <p class="attention-detail">
+                      <span class="attention-names">{{ item.detailNames }}</span>{{ item.detailSuffix }}
+                    </p>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <div class="sites-grid">
+    @for (site of filteredSites(); track site.id) {
+      <div class="site-card">
+        <div class="card-header">
+          <div class="card-info">
+            <h3 class="site-name">{{ site.name }}</h3>
+            <p class="site-location">{{ site.location }}</p>
+            @if (site.alertTag) {
+              <span class="alert-tag" [class]="getAlertClass(site.alertType)">
+                {{ site.alertTag }}
+              </span>
+            }
+          </div>
+          <span class="status-badge" [class]="getStatusClass(site.status)">
+            {{ site.status }}
+          </span>
+        </div>
+
+        <div class="card-stats">
+          <div class="stat-row">
+            <span class="stat-label">Students</span>
+            <span class="stat-value">{{ site.students }}</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Courses</span>
+            <span class="stat-value">{{ site.courses }}</span>
+          </div>
+        </div>
+
+        <div class="card-actions">
+          <button class="action-btn show-units">Show Units</button>
+          <button class="action-btn manage">Manage</button>
+        </div>
+      </div>
+    }
+
+    @if (filteredSites().length === 0) {
+      <div class="empty-state">
+        <mat-icon>location_off</mat-icon>
+        <p>No clinical sites found</p>
+      </div>
+    }
+  </div>
+</div>

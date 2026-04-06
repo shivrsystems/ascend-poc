@@ -1,0 +1,27 @@
+@use '../../styles/variables' as *;
+
+.shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.shell-main {
+  flex: 1;
+  margin-left: $sidebar-collapsed-width;
+  min-height: 100vh;
+  transition: margin-left 0.2s ease;
+
+  &.sidebar-expanded {
+    margin-left: $sidebar-expanded-width;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .shell-main {
+    margin-left: 0;
+
+    &.sidebar-expanded {
+      margin-left: 0;
+    }
+  }
+}

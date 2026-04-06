@@ -1,0 +1,59 @@
+<header class="header">
+  <div class="header-left">
+    <div class="header-mobile-actions">
+      <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img src="assets/images/ati-logo-dark.png" alt="ATI" class="mobile-logo" />
+    </div>
+    <div class="header-title-section">
+      <h1 class="header-title">{{ title() }}</h1>
+      @if (subtitle()) {
+        <p class="header-subtitle">{{ subtitle() }}</p>
+      }
+    </div>
+  </div>
+
+  <div class="header-right">
+    <button class="org-selector" [matMenuTriggerFor]="orgMenu">
+      <span class="org-name">{{ orgService.currentOrg().name }}</span>
+      <mat-icon class="org-caret">expand_more</mat-icon>
+    </button>
+    <mat-menu #orgMenu="matMenu">
+      @for (org of orgService.allOrganizations(); track org.id) {
+        <button mat-menu-item (click)="selectOrg(org.id)">
+          {{ org.name }}
+        </button>
+      }
+    </mat-menu>
+
+    <button class="notification-btn" [matMenuTriggerFor]="notifMenu">
+      <mat-icon>notifications_none</mat-icon>
+    </button>
+    <mat-menu #notifMenu="matMenu">
+      <div class="notif-empty">No notifications</div>
+    </mat-menu>
+
+    <button class="user-pill" [matMenuTriggerFor]="userMenu">
+      <div class="user-avatar">
+        <img src="assets/images/ati-logo-dark.png" alt="" class="avatar-img" onerror="this.style.display='none'" />
+        <mat-icon class="avatar-fallback">person</mat-icon>
+      </div>
+      <span class="user-name">{{ authService.user()?.name ?? 'John Doe' }}</span>
+      <mat-icon class="user-caret">expand_more</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="authService.signOut()">
+        <mat-icon>logout</mat-icon>
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <div class="header-mobile-title">
+    <h1 class="header-title">{{ title() }}</h1>
+    @if (subtitle()) {
+      <p class="header-subtitle">{{ subtitle() }}</p>
+    }
+  </div>
+</header>

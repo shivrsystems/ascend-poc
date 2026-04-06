@@ -1,0 +1,6 @@
+<div class="shell">
+  <app-sidebar />
+  <div class="shell-main" [class.sidebar-expanded]="sidebarService.isExpanded()">
+    <router-outlet />
+  </div>
+</div>
