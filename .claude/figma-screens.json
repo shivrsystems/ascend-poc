@@ -63,7 +63,8 @@
       "name": "Forgot Password",
       "nodeId": "163:3233",
       "platform": "desktop",
-      "state": "modal",
+      "state": "standalone page",
+      "note": "Centered card on its own route (/forgot-password), not a dialog/modal. Linked from sign-in page's 'Forgot Username or Password?' link.",
       "angularComponent": null,
       "angularFiles": []
     }
