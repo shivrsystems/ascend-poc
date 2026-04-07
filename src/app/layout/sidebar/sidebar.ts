@@ -25,7 +25,7 @@ export class SidebarComponent {
   readonly navItems: NavItem[] = [
     { label: 'Dashboard', icon: 'grid_view', route: '/dashboard' },
     { label: 'Clinical Sites', icon: 'location_on', route: '/clinical-sites' },
-    { label: 'Curriculum Management', icon: 'folder_copy', route: '/curriculum' },
+    { label: 'Curriculum', icon: 'folder_copy', route: '/curriculum' },
     // { label: 'Documents', icon: 'description', route: '/documents' },
     // { label: 'Assessments', icon: 'checklist', route: '/assessments' },
     // { label: 'Modules', icon: 'view_module', route: '/modules' },

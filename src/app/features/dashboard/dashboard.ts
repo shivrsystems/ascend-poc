@@ -1,7 +1,6 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { HeaderComponent } from '../../layout/header/header';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { Report } from '../../core/models/dashboard.model';
@@ -9,7 +8,7 @@ import { Report } from '../../core/models/dashboard.model';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatIconModule, MatTabsModule, MatTooltipModule, HeaderComponent],
+  imports: [MatIconModule, MatTabsModule, HeaderComponent],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
@@ -24,29 +23,13 @@ export class DashboardComponent {
   readonly stats = computed(() => {
     const s = this.dashboardService.stats();
     return [
-      {
-        label: 'Total Students',
-        value: s.totalStudents,
-        change: s.newStudentsThisMonth,
-        tooltip: 'Students enrolled in the program',
-      },
-      {
-        label: 'Total Sites',
-        value: s.totalSites,
-        change: s.newSitesThisMonth,
-        tooltip: 'Locations approved for student use',
-      },
-      {
-        label: 'Total Courses',
-        value: s.totalCourses,
-        change: s.newCoursesThisMonth,
-        tooltip: 'Locations approved for student use',
-      },
+      { label: 'Total Students', value: s.totalStudents, change: s.newStudentsThisMonth },
+      { label: 'Total Sites', value: s.totalSites, change: s.newSitesThisMonth },
+      { label: 'Total Courses', value: s.totalCourses, change: s.newCoursesThisMonth },
       {
         label: 'Scheduled Evaluations',
         value: s.scheduledEvaluations.toLocaleString(),
         change: s.newEvaluationsThisMonth,
-        tooltip: 'Scheduled evaluations for student use',
       },
     ];
   });
