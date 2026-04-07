@@ -3,34 +3,6 @@
   "lastChecked": "2026-04-07",
   "knownScreens": [
     {
-      "name": "Sign In",
-      "nodeId": "24:1015",
-      "platform": "desktop",
-      "state": "default",
-      "angularComponent": "SignInComponent",
-      "angularFiles": [
-        "src/app/features/auth/sign-in/sign-in.ts",
-        "src/app/features/auth/sign-in/sign-in.html",
-        "src/app/features/auth/sign-in/sign-in.scss"
-      ]
-    },
-    {
-      "name": "Forgot Password",
-      "nodeId": "163:3233",
-      "platform": "desktop",
-      "state": "modal",
-      "angularComponent": null,
-      "angularFiles": []
-    },
-    {
-      "name": "Sign Up",
-      "nodeId": "163:3246",
-      "platform": "desktop",
-      "state": "modal",
-      "angularComponent": null,
-      "angularFiles": []
-    },
-    {
       "name": "Dashboard",
       "nodeId": "24:684",
       "platform": "desktop",
@@ -64,42 +36,6 @@
       "angularFiles": ["src/app/features/dashboard/dashboard.html"]
     },
     {
-      "name": "Dashboard — Notification Widget",
-      "nodeId": "143:3266",
-      "platform": "desktop",
-      "state": "notification panel open",
-      "angularComponent": null,
-      "angularFiles": []
-    },
-    {
-      "name": "University Dropdown",
-      "nodeId": "63:2376",
-      "platform": "desktop",
-      "state": "org switcher open",
-      "angularComponent": "HeaderComponent",
-      "angularFiles": [
-        "src/app/layout/header/header.ts",
-        "src/app/layout/header/header.html",
-        "src/app/layout/header/header.scss"
-      ]
-    },
-    {
-      "name": "User Profile Dropdown",
-      "nodeId": "158:3233",
-      "platform": "desktop",
-      "state": "profile menu open",
-      "angularComponent": "HeaderComponent",
-      "angularFiles": ["src/app/layout/header/header.html"]
-    },
-    {
-      "name": "Notification Widget",
-      "nodeId": "143:3837",
-      "platform": "desktop",
-      "state": "standalone widget",
-      "angularComponent": null,
-      "angularFiles": []
-    },
-    {
       "name": "Clinical Sites",
       "nodeId": "24:852",
       "platform": "desktop",
@@ -110,25 +46,6 @@
         "src/app/features/clinical-sites/clinical-sites.html",
         "src/app/features/clinical-sites/clinical-sites.scss"
       ]
-    },
-    {
-      "name": "Clinical Sites — Insights Panel",
-      "nodeId": "25:1078",
-      "platform": "desktop",
-      "state": "insights panel open",
-      "angularComponent": "ClinicalSitesComponent",
-      "angularFiles": [
-        "src/app/features/clinical-sites/clinical-sites.html",
-        "src/app/features/clinical-sites/clinical-sites.scss"
-      ]
-    },
-    {
-      "name": "Add Clinical Site Modal",
-      "nodeId": "160:3233",
-      "platform": "desktop",
-      "state": "modal",
-      "angularComponent": null,
-      "angularFiles": []
     },
     {
       "name": "Curriculum Management",
@@ -143,117 +60,12 @@
       ]
     },
     {
-      "name": "Curriculum Management — Smart Search",
-      "nodeId": "85:2191",
-      "platform": "desktop",
-      "state": "smart search active",
-      "angularComponent": "CurriculumComponent",
-      "angularFiles": [
-        "src/app/features/curriculum/curriculum.html",
-        "src/app/features/curriculum/curriculum.scss"
-      ]
-    },
-    {
-      "name": "Curriculum Management — Empty State",
-      "nodeId": "85:2965",
-      "platform": "desktop",
-      "state": "no results",
-      "angularComponent": "CurriculumComponent",
-      "angularFiles": [
-        "src/app/features/curriculum/curriculum.html",
-        "src/app/features/curriculum/curriculum.scss"
-      ]
-    },
-    {
-      "name": "Curriculum Management — Quick Actions",
-      "nodeId": "88:2902",
-      "platform": "desktop",
-      "state": "quick actions panel",
-      "angularComponent": "CurriculumComponent",
-      "angularFiles": [
-        "src/app/features/curriculum/curriculum.html",
-        "src/app/features/curriculum/curriculum.scss"
-      ]
-    },
-    {
-      "name": "Create Curriculum Modal",
-      "nodeId": "161:3233",
+      "name": "Forgot Password",
+      "nodeId": "163:3233",
       "platform": "desktop",
       "state": "modal",
       "angularComponent": null,
       "angularFiles": []
-    },
-    {
-      "name": "Report Detail Slideout",
-      "nodeId": "162:3233",
-      "platform": "desktop",
-      "state": "slideout panel",
-      "angularComponent": null,
-      "angularFiles": []
-    },
-    {
-      "name": "Delete Confirmation Dialog",
-      "nodeId": "159:3233",
-      "platform": "desktop",
-      "state": "modal",
-      "angularComponent": null,
-      "angularFiles": []
-    },
-    {
-      "name": "Success Toast",
-      "nodeId": "159:3245",
-      "platform": "desktop",
-      "state": "toast",
-      "angularComponent": null,
-      "angularFiles": []
-    },
-    {
-      "name": "Error Toast",
-      "nodeId": "159:3249",
-      "platform": "desktop",
-      "state": "toast",
-      "angularComponent": null,
-      "angularFiles": []
-    },
-    {
-      "name": "Dropdown Menu",
-      "nodeId": "85:2606",
-      "platform": "desktop",
-      "state": "component",
-      "angularComponent": null,
-      "angularFiles": []
-    },
-    {
-      "name": "Mobile Sign In",
-      "nodeId": "65:3188",
-      "platform": "mobile",
-      "state": "default",
-      "angularComponent": "SignInComponent",
-      "angularFiles": ["src/app/features/auth/sign-in/sign-in.scss"]
-    },
-    {
-      "name": "Mobile Dashboard",
-      "nodeId": "65:3267",
-      "platform": "mobile",
-      "state": "default",
-      "angularComponent": "DashboardComponent",
-      "angularFiles": ["src/app/features/dashboard/dashboard.scss"]
-    },
-    {
-      "name": "Mobile Clinical Sites",
-      "nodeId": "69:1620",
-      "platform": "mobile",
-      "state": "default",
-      "angularComponent": "ClinicalSitesComponent",
-      "angularFiles": ["src/app/features/clinical-sites/clinical-sites.scss"]
-    },
-    {
-      "name": "Mobile Curriculum",
-      "nodeId": "69:2126",
-      "platform": "mobile",
-      "state": "default",
-      "angularComponent": "CurriculumComponent",
-      "angularFiles": ["src/app/features/curriculum/curriculum.scss"]
     }
   ],
   "knownInteractivePatterns": [
@@ -266,6 +78,11 @@
       "pattern": "info-tooltip",
       "description": "Stat card info icons have matTooltip with exact text from Figma frame 143:2904",
       "files": ["src/app/features/dashboard/dashboard.html"]
+    },
+    {
+      "pattern": "sidebar-nav-labels",
+      "description": "Sidebar nav item labels must match Figma text exactly (frame 63:1873). Current: Dashboard, Clinical Sites, Curriculum Management",
+      "files": ["src/app/layout/sidebar/sidebar.ts"]
     }
   ]
 }

@@ -479,8 +479,8 @@
 .site-card {
   background: $color-white;
   border: 1px solid $color-border;
-  border-radius: $radius-md;
-  padding: $spacing-xl;
+  border-radius: $radius-xl;
+  padding: $spacing-2xl $spacing-xl;
   display: flex;
   flex-direction: column;
 }

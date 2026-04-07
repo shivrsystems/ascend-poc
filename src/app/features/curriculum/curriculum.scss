@@ -200,9 +200,9 @@
 .curriculum-card {
   background: $color-white;
   border: 1px solid $color-border;
-  border-radius: $radius-md;
+  border-radius: $radius-xl;
   padding: $spacing-xl;
-  box-shadow: -2.5px 0 0 0 #12B76A;
+  box-shadow: -2.5px 0 0 0 $color-success-700;
   display: flex;
   flex-direction: column;
   gap: $spacing-lg;

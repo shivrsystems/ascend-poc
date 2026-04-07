@@ -1,4 +1,7 @@
-<app-header title="Dashboard" subtitle="Welcome back! Here's what's happening with your reports today." />
+<app-header
+  title="Dashboard"
+  subtitle="Welcome back! Here's what's happening with your reports today."
+/>
 
 <div class="dashboard-content">
   <div class="dashboard-main">
@@ -7,7 +10,9 @@
         <div class="stat-card">
           <div class="stat-header">
             <span class="stat-label">{{ stat.label }}</span>
-            <mat-icon class="stat-info">info_outline</mat-icon>
+            <mat-icon class="stat-info" [matTooltip]="stat.tooltip" matTooltipPosition="above"
+              >info_outline</mat-icon
+            >
           </div>
           <div class="stat-body">
             <span class="stat-value">{{ stat.value }}</span>
@@ -19,11 +24,7 @@
 
     <div class="reports-section">
       <div class="reports-tabs">
-        <button
-          class="tab-btn"
-          [class.active]="activeTab() === 'sep'"
-          (click)="setTab('sep')"
-        >
+        <button class="tab-btn" [class.active]="activeTab() === 'sep'" (click)="setTab('sep')">
           SEP Reports
         </button>
         <button
@@ -55,7 +56,9 @@
           <div class="table-row">
             <div class="col-name">
               <a class="report-link">{{ report.name }}</a>
-              <span class="report-meta">Updated by {{ report.updatedBy }} · {{ report.updatedDate }}</span>
+              <span class="report-meta"
+                >Updated by {{ report.updatedBy }} · {{ report.updatedDate }}</span
+              >
             </div>
             <div class="col-status">
               <span
@@ -71,9 +74,18 @@
         }
 
         <div class="table-footer">
-          <span class="showing-text">Showing {{ (currentPage() - 1) * pageSize + 1 }}–{{ Math.min(currentPage() * pageSize, totalReports()) }} of {{ totalReports() }}</span>
+          <span class="showing-text"
+            >Showing {{ (currentPage() - 1) * pageSize + 1 }}–{{
+              Math.min(currentPage() * pageSize, totalReports())
+            }}
+            of {{ totalReports() }}</span
+          >
           <div class="pagination">
-            <button class="page-btn" [disabled]="currentPage() === 1" (click)="setPage(currentPage() - 1)">
+            <button
+              class="page-btn"
+              [disabled]="currentPage() === 1"
+              (click)="setPage(currentPage() - 1)"
+            >
               <mat-icon>chevron_left</mat-icon>
             </button>
             @for (page of [].constructor(totalPages()); track $index) {
@@ -85,7 +97,11 @@
                 {{ $index + 1 }}
               </button>
             }
-            <button class="page-btn" [disabled]="currentPage() === totalPages()" (click)="setPage(currentPage() + 1)">
+            <button
+              class="page-btn"
+              [disabled]="currentPage() === totalPages()"
+              (click)="setPage(currentPage() + 1)"
+            >
               <mat-icon>chevron_right</mat-icon>
             </button>
           </div>
@@ -113,7 +129,10 @@
       <div class="activities-list">
         @for (activity of dashboardService.activities(); track activity.id) {
           <div class="activity-item">
-            <div class="activity-dot" [style.background-color]="getActivityColor(activity.color)"></div>
+            <div
+              class="activity-dot"
+              [style.background-color]="getActivityColor(activity.color)"
+            ></div>
             <div class="activity-content">
               <p class="activity-text">
                 @if (activity.count) {
