@@ -7,7 +7,11 @@
 
   "permissions": {
     "allow": [
-      "Bash(npm run:*)"
+      "Bash(*)",
+      "Edit(*)",
+      "Read(*)",
+      "Write(*)",
+      "mcp__eb3824a6*"
     ],
     "deny": [
       "Edit(.env)",
