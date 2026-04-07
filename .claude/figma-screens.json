@@ -1,0 +1,271 @@
+{
+  "figmaFile": "https://www.figma.com/design/n7hLF0V4FAqLsqkKxToOe3/Ascend?node-id=24-682",
+  "lastChecked": "2026-04-07",
+  "knownScreens": [
+    {
+      "name": "Sign In",
+      "nodeId": "24:1015",
+      "platform": "desktop",
+      "state": "default",
+      "angularComponent": "SignInComponent",
+      "angularFiles": [
+        "src/app/features/auth/sign-in/sign-in.ts",
+        "src/app/features/auth/sign-in/sign-in.html",
+        "src/app/features/auth/sign-in/sign-in.scss"
+      ]
+    },
+    {
+      "name": "Forgot Password",
+      "nodeId": "163:3233",
+      "platform": "desktop",
+      "state": "modal",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Sign Up",
+      "nodeId": "163:3246",
+      "platform": "desktop",
+      "state": "modal",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Dashboard",
+      "nodeId": "24:684",
+      "platform": "desktop",
+      "state": "default (sidebar collapsed)",
+      "angularComponent": "DashboardComponent",
+      "angularFiles": [
+        "src/app/features/dashboard/dashboard.ts",
+        "src/app/features/dashboard/dashboard.html",
+        "src/app/features/dashboard/dashboard.scss"
+      ]
+    },
+    {
+      "name": "Dashboard — Sidebar Expanded",
+      "nodeId": "63:1873",
+      "platform": "desktop",
+      "state": "sidebar expanded",
+      "angularComponent": "SidebarComponent",
+      "angularFiles": [
+        "src/app/layout/sidebar/sidebar.ts",
+        "src/app/layout/sidebar/sidebar.html",
+        "src/app/layout/sidebar/sidebar.scss"
+      ]
+    },
+    {
+      "name": "Dashboard — Tooltip State",
+      "nodeId": "143:2904",
+      "platform": "desktop",
+      "state": "stat card info tooltip visible",
+      "note": "Use this frame to verify tooltip text on stat card info icons. Contains 4 Tooltip overlay frames with exact text.",
+      "angularComponent": "DashboardComponent",
+      "angularFiles": ["src/app/features/dashboard/dashboard.html"]
+    },
+    {
+      "name": "Dashboard — Notification Widget",
+      "nodeId": "143:3266",
+      "platform": "desktop",
+      "state": "notification panel open",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "University Dropdown",
+      "nodeId": "63:2376",
+      "platform": "desktop",
+      "state": "org switcher open",
+      "angularComponent": "HeaderComponent",
+      "angularFiles": [
+        "src/app/layout/header/header.ts",
+        "src/app/layout/header/header.html",
+        "src/app/layout/header/header.scss"
+      ]
+    },
+    {
+      "name": "User Profile Dropdown",
+      "nodeId": "158:3233",
+      "platform": "desktop",
+      "state": "profile menu open",
+      "angularComponent": "HeaderComponent",
+      "angularFiles": ["src/app/layout/header/header.html"]
+    },
+    {
+      "name": "Notification Widget",
+      "nodeId": "143:3837",
+      "platform": "desktop",
+      "state": "standalone widget",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Clinical Sites",
+      "nodeId": "24:852",
+      "platform": "desktop",
+      "state": "default",
+      "angularComponent": "ClinicalSitesComponent",
+      "angularFiles": [
+        "src/app/features/clinical-sites/clinical-sites.ts",
+        "src/app/features/clinical-sites/clinical-sites.html",
+        "src/app/features/clinical-sites/clinical-sites.scss"
+      ]
+    },
+    {
+      "name": "Clinical Sites — Insights Panel",
+      "nodeId": "25:1078",
+      "platform": "desktop",
+      "state": "insights panel open",
+      "angularComponent": "ClinicalSitesComponent",
+      "angularFiles": [
+        "src/app/features/clinical-sites/clinical-sites.html",
+        "src/app/features/clinical-sites/clinical-sites.scss"
+      ]
+    },
+    {
+      "name": "Add Clinical Site Modal",
+      "nodeId": "160:3233",
+      "platform": "desktop",
+      "state": "modal",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Curriculum Management",
+      "nodeId": "25:507",
+      "platform": "desktop",
+      "state": "default",
+      "angularComponent": "CurriculumComponent",
+      "angularFiles": [
+        "src/app/features/curriculum/curriculum.ts",
+        "src/app/features/curriculum/curriculum.html",
+        "src/app/features/curriculum/curriculum.scss"
+      ]
+    },
+    {
+      "name": "Curriculum Management — Smart Search",
+      "nodeId": "85:2191",
+      "platform": "desktop",
+      "state": "smart search active",
+      "angularComponent": "CurriculumComponent",
+      "angularFiles": [
+        "src/app/features/curriculum/curriculum.html",
+        "src/app/features/curriculum/curriculum.scss"
+      ]
+    },
+    {
+      "name": "Curriculum Management — Empty State",
+      "nodeId": "85:2965",
+      "platform": "desktop",
+      "state": "no results",
+      "angularComponent": "CurriculumComponent",
+      "angularFiles": [
+        "src/app/features/curriculum/curriculum.html",
+        "src/app/features/curriculum/curriculum.scss"
+      ]
+    },
+    {
+      "name": "Curriculum Management — Quick Actions",
+      "nodeId": "88:2902",
+      "platform": "desktop",
+      "state": "quick actions panel",
+      "angularComponent": "CurriculumComponent",
+      "angularFiles": [
+        "src/app/features/curriculum/curriculum.html",
+        "src/app/features/curriculum/curriculum.scss"
+      ]
+    },
+    {
+      "name": "Create Curriculum Modal",
+      "nodeId": "161:3233",
+      "platform": "desktop",
+      "state": "modal",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Report Detail Slideout",
+      "nodeId": "162:3233",
+      "platform": "desktop",
+      "state": "slideout panel",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Delete Confirmation Dialog",
+      "nodeId": "159:3233",
+      "platform": "desktop",
+      "state": "modal",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Success Toast",
+      "nodeId": "159:3245",
+      "platform": "desktop",
+      "state": "toast",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Error Toast",
+      "nodeId": "159:3249",
+      "platform": "desktop",
+      "state": "toast",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Dropdown Menu",
+      "nodeId": "85:2606",
+      "platform": "desktop",
+      "state": "component",
+      "angularComponent": null,
+      "angularFiles": []
+    },
+    {
+      "name": "Mobile Sign In",
+      "nodeId": "65:3188",
+      "platform": "mobile",
+      "state": "default",
+      "angularComponent": "SignInComponent",
+      "angularFiles": ["src/app/features/auth/sign-in/sign-in.scss"]
+    },
+    {
+      "name": "Mobile Dashboard",
+      "nodeId": "65:3267",
+      "platform": "mobile",
+      "state": "default",
+      "angularComponent": "DashboardComponent",
+      "angularFiles": ["src/app/features/dashboard/dashboard.scss"]
+    },
+    {
+      "name": "Mobile Clinical Sites",
+      "nodeId": "69:1620",
+      "platform": "mobile",
+      "state": "default",
+      "angularComponent": "ClinicalSitesComponent",
+      "angularFiles": ["src/app/features/clinical-sites/clinical-sites.scss"]
+    },
+    {
+      "name": "Mobile Curriculum",
+      "nodeId": "69:2126",
+      "platform": "mobile",
+      "state": "default",
+      "angularComponent": "CurriculumComponent",
+      "angularFiles": ["src/app/features/curriculum/curriculum.scss"]
+    }
+  ],
+  "knownInteractivePatterns": [
+    {
+      "pattern": "sidebar-tooltip",
+      "description": "Collapsed sidebar nav items show label as matTooltip",
+      "files": ["src/app/layout/sidebar/sidebar.html"]
+    },
+    {
+      "pattern": "info-tooltip",
+      "description": "Stat card info icons have matTooltip with exact text from Figma frame 143:2904",
+      "files": ["src/app/features/dashboard/dashboard.html"]
+    }
+  ]
+}
