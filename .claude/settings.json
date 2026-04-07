@@ -21,19 +21,6 @@
   },
 
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "agent",
-            "prompt": "Check if Figma designs have changed compared to our implementation. Use the Figma MCP tools to inspect the Ascend design file (fileKey: n7hLF0V4FAqLsqkKxToOe3). Compare these 4 screens by taking screenshots: Sign In (nodeId: 24:1015), Dashboard (nodeId: 24:684), Clinical Sites (nodeId: 24:852), Curriculum (nodeId: 25:507). For each screen, compare the Figma screenshot against the corresponding component files in src/app/features/. Check colors, typography, spacing, and layout. If you find differences, output a JSON response: {\"systemMessage\": \"Figma drift detected: [brief summary of changes]\", \"hookSpecificOutput\": {\"hookEventName\": \"SessionStart\", \"additionalContext\": \"[detailed list of Figma changes to fix]\"}}. If everything matches, output: {\"systemMessage\": \"Figma designs are in sync with implementation.\"}",
-            "timeout": 120,
-            "statusMessage": "Checking Figma for design changes...",
-            "async": true
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Edit",
