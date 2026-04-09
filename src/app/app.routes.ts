@@ -20,5 +20,8 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },
-  { path: '**', redirectTo: 'dashboard' },
+  {
+    path: '**',
+    loadComponent: () => import('./features/not-found/not-found').then((m) => m.NotFoundComponent),
+  },
 ];

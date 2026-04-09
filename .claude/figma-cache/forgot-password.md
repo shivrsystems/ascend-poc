@@ -8,7 +8,7 @@
 
 Centered white card with rounded corners (16px radius), border #e9f1fa, padding 40px, 24px gap between elements:
 
-- ATI logo icon (36×56px) at top center
+- ATI logo icon (64×88px) at top center — render larger than Figma original for better visual presence
 - Title: "Forgot Password?" — bold, 24px, color #1d2939, centered
 - Subtitle: "No worries! Enter your email and we'll send you a link to reset your password." — regular, 14px, color #667085, centered, line-height 1.6
 - Form section (20px gap between children):
@@ -50,7 +50,7 @@ export default function ForgotPassword() {
       data-node-id="163:3233"
     >
       <div
-        className="h-[56px] relative shrink-0 w-[36px]"
+        className="h-[88px] relative shrink-0 w-[64px]"
         data-name="Frame"
         data-node-id="163:3234"
       >
