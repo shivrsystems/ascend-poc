@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [RouterLink, MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './not-found.html',
   styleUrl: './not-found.scss',
 })
-export class NotFoundComponent {}
+export class NotFoundComponent {
+  private readonly location = inject(Location);
+
+  goBack(): void {
+    this.location.back();
+  }
+}

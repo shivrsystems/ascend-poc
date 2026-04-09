@@ -4,9 +4,9 @@
     <h1 class="not-found-code">404</h1>
     <h2 class="not-found-title">Page Not Found</h2>
     <p class="not-found-message">The page you're looking for doesn't exist or has been moved.</p>
-    <a mat-flat-button color="primary" routerLink="/dashboard" class="not-found-btn">
+    <button mat-flat-button color="primary" class="not-found-btn" (click)="goBack()">
       <mat-icon>arrow_back</mat-icon>
-      Back to Dashboard
-    </a>
+      Go Back
+    </button>
   </div>
 </div>

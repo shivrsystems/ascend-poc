@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -8,7 +8,7 @@ import { AuthService } from '../../../core/services/auth.service';
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [FormsModule, MatIconModule, MatCheckboxModule],
+  imports: [FormsModule, MatIconModule, MatCheckboxModule, RouterLink],
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.scss',
 })
