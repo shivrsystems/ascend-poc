@@ -61,6 +61,7 @@ Derive `{name}` from the screen name in kebab-case (e.g., "Forgot Password" → 
 
 ## Rules
 
+- NEVER update or modify `.claude/figma-screens.json` — leave it completely as-is
 - NEVER hardcode hex colors, px spacing, or px border-radius — always use design tokens
 - NEVER commit — leave changes unstaged on the branch for the user to review
 - Follow the exact pattern from Clinical Sites (`src/app/features/clinical-sites/`) for component structure
