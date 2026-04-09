@@ -4,10 +4,7 @@ Scaffold a new Angular screen driven by Figma design. Reads `figma-screens.json`
 
 ## Step 0 — Branch Setup
 
-1. Ensure working tree is clean (`git status`). If there are unstaged changes, stash them first.
-2. Checkout `main` and pull latest.
-3. Create a new branch: `git checkout -b migrate/<screen-name-kebab-case>`
-   - Example: `git checkout -b migrate/forgot-password`
+1. Skip if already on a feature branch. Otherwise create: `git checkout -b migrate/<screen-name-kebab-case>`
 
 ## Step 1 — Pick the Screen
 
@@ -15,11 +12,13 @@ Scaffold a new Angular screen driven by Figma design. Reads `figma-screens.json`
 2. List all entries where `"angularComponent": null` — these are unimplemented screens
 3. If the user specified a screen name, find the matching entry. Otherwise ask which one to implement.
 
-## Step 2 — Pull Figma Design
+## Step 2 — Pull Figma Design (use cache first!)
 
-1. Call `get_design_context` with the screen's `nodeId` and the file key `n7hLF0V4FAqLsqkKxToOe3`
-2. Study the layout, colors, typography, spacing, and interactive elements from the response
-3. Map all Figma values to design tokens from `src/app/styles/_variables.scss`:
+1. **Check for cached design first**: Look for `.claude/figma-cache/{screen-name-kebab-case}.md`
+   - If the cache file exists, read it and use the design data from there. Do NOT call `get_design_context`.
+   - If no cache file exists, call `get_design_context` with the screen's `nodeId` and the file key `n7hLF0V4FAqLsqkKxToOe3`
+2. Study the layout, colors, typography, spacing, and interactive elements
+3. Use the design token mapping from the cache (or map manually if fetched live):
    - Colors: hex → `$color-*` tokens
    - Spacing/padding: px → `$spacing-*` tokens
    - Border radius: px → `$radius-*` tokens
@@ -59,10 +58,7 @@ Derive `{name}` from the screen name in kebab-case (e.g., "Forgot Password" → 
 ## Step 4 — Verify
 
 1. Run `npm run build` — fix any errors before continuing
-2. Run `npm run test:unit -- --run` — fix any NEW failures (pre-existing ones in sidebar.spec.ts can be ignored)
-3. Update `figma-screens.json`:
-   - Set `"angularComponent"` to the class name
-   - Set `"angularFiles"` to the list of generated files
+2. Skip tests for speed — do NOT run `npm run test:unit`
 
 ## Step 5 — Update Registry
 
